@@ -10,5 +10,12 @@
 
     networking.hostName = "Stella";
 
+    users.users.shion = {
+        isNormalUser = true;
+        extraGroups = [ "networkmanager" "wheel" ];
+        packages = with pkgs; [
+        ];
+    };
+
     nix.settings.experimental-features = [ "nix-command", "flakes" ];
 }
