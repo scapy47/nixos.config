@@ -17,5 +17,17 @@
         ];
     };
 
+    enviroment.systemPackages = with pkgs; [
+        neovim
+        git
+    ];
+
+    programs.zsh.enable = true;
+    programs.starship = {
+        enable = true;
+        add_newline = false;
+    };
+
+
     nix.settings.experimental-features = [ "nix-command", "flakes" ];
 }
