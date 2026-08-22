@@ -20,6 +20,7 @@
     enviroment.systemPackages = with pkgs; [
         neovim
         git
+        jujutsu
     ];
 
     programs.zsh.enable = true;
