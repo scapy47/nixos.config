@@ -17,15 +17,13 @@
       "networkmanager"
       "wheel"
     ];
+    shell = pkgs.zsh;
     packages = with pkgs; [
+      neovim
+      git
+      jujutsu
     ];
   };
-
-  enviroment.systemPackages = with pkgs; [
-    neovim
-    git
-    jujutsu
-  ];
 
   programs.zsh.enable = true;
   programs.starship = {
@@ -33,9 +31,12 @@
     add_newline = false;
   };
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-  nix.settings.auto-optimise-store = true;
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    auto-optimise-store = true;
+    allowed-users = [ "@wheel" ];
+  };
 }
