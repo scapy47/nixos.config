@@ -2,12 +2,12 @@
 
 {
   imports = [
-    /etc/nixos/hardware-configuration.nix
+    ../hardware-configuration.nix
     ./desktop.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
-  boot.loader.eli.canTouchEfiVariables = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "Stella";
 
@@ -23,12 +23,6 @@
       git
       jujutsu
     ];
-  };
-
-  programs.zsh.enable = true;
-  programs.starship = {
-    enable = true;
-    add_newline = false;
   };
 
   nix.settings = {

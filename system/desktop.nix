@@ -18,13 +18,13 @@
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
-      xdg-desktop-portal-sh
+      xdg-desktop-portal-generic
     ];
 
     config = {
-      common = {
-        default = [ "sh" ];
-      };
+      # common = {
+      #   default = [ "sh" ];
+      # };
     };
   };
 

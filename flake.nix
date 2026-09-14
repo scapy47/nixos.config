@@ -1,12 +1,14 @@
 {
-  discription = "System configuration";
-  input = {
+  description = "System configuration";
+  inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
   };
-  output = { self, nixpkgs, ... }: {
+
+  outputs = { self, nixpkgs, ... }: {
     nixosConfigurations.Stella = nixpkgs.lib.nixosSystem {
+      system = builtins.currentSystem or "x86_64-linux";
       modules = [
-        ./system/config.nix
+        ./system
       ];
     };
   };
