@@ -1,7 +1,12 @@
 {
   description = "System configuration";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "flake:nixpkgs/nixos-unstable";
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, ... }: {
@@ -9,6 +14,7 @@
       system = builtins.currentSystem or "x86_64-linux";
       modules = [
         ./system
+        ./hosts
       ];
     };
   };

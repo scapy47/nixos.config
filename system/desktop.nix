@@ -17,15 +17,6 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-generic
-    ];
-
-    config = {
-      # common = {
-      #   default = [ "sh" ];
-      # };
-    };
   };
 
   environment.systemPackages = with pkgs; [
