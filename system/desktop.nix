@@ -11,13 +11,22 @@
     };
   };
 
-  #  TODO: look into the research i did
-
-  programs.niri.enable = true;
-
   xdg.portal = {
     enable = true;
   };
+
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    wireplumber = {
+      enable = true;
+    };
+  };
+
+  programs.niri.enable = true;
 
   environment.systemPackages = with pkgs; [
     xwayland-satellite

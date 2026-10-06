@@ -11,6 +11,8 @@
 
   networking.hostName = "Stella";
 
+  systemd.network.enable = true;
+
   users.users.shion = {
     isNormalUser = true;
     extraGroups = [
