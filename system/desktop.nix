@@ -24,6 +24,7 @@
   };
 
   services.upower.enable = true;
+  services.libinput.enable = true;
 
   xdg.portal = {
     enable = true;

@@ -5,10 +5,13 @@
     ./desktop.nix
   ];
 
-  boot.loader.systemd-boot.enable = true;
+  system.stateVersion = "26.11";
+
+  boot.loader.limine.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "Stella";
+  networking.networkmanager.enable = true;
 
   users.users.shion = {
     isNormalUser = true;
@@ -19,11 +22,18 @@
     shell = pkgs.zsh;
   };
 
-  packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     nh
   ];
 
-  programs.nix-ld.enable = true;
+  programs = {
+    zsh.enable = true;
+    nix-ld.enable = true;
+  };
+
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
 
   nix = {
     gc = {
