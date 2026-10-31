@@ -12,14 +12,14 @@
     {
       self,
       nixpkgs,
-      inputs,
+      disko,
       ...
     }:
     {
       nixosConfigurations.Stella = nixpkgs.lib.nixosSystem {
         system = builtins.currentSystem or "x86_64-linux";
         modules = [
-          inputs.disko.nixosModules.disko
+          disko.nixosModules.disko
 
           ./system
           ./hosts

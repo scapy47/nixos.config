@@ -4,12 +4,26 @@
 
   services.greetd = {
     enable = true;
+    # settings = {
+    #   default_session = {
+    #     command = "${pkgs.greetd}/bin/agreety --cmd niri-session";
+    #   };
+    # };
+  };
+
+  services.displayManager.noctalia-greeter = {
+    enable = true;
     settings = {
-      default_session = {
-        command = "${pkgs.greetd}/bin/agreety --cmd niri-session";
-      };
+      cursor.size = 24;
+      keyboard.layout = "us";
+    };
+    cursorTheme = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
     };
   };
+
+  services.upower.enable = true;
 
   xdg.portal = {
     enable = true;
@@ -35,11 +49,17 @@
     binfmt = true;
   };
 
-  programs.niri.enable = true;
+  programs.niri = {
+    enable = true;
+  };
+
+  programs.noctalia = {
+    enable = true;
+  };
 
   environment.systemPackages = with pkgs; [
     xwayland-satellite
-    kitty
+    matugen
   ];
 
 }
