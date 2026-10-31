@@ -1,8 +1,7 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
-    ../hardware-configuration.nix
     ./desktop.nix
   ];
 
@@ -11,8 +10,6 @@
 
   networking.hostName = "Stella";
 
-  systemd.network.enable = true;
-
   users.users.shion = {
     isNormalUser = true;
     extraGroups = [
@@ -20,19 +17,28 @@
       "wheel"
     ];
     shell = pkgs.zsh;
-    packages = with pkgs; [
-      neovim
-      git
-      jujutsu
-    ];
   };
 
-  nix.settings = {
-    experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-    auto-optimise-store = true;
-    allowed-users = [ "@wheel" ];
+  packages = with pkgs; [
+    nh
+  ];
+
+  programs.nix-ld.enable = true;
+
+  nix = {
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+    package = pkgs.lixPackageSets.stable.lix;
+    settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      auto-optimise-store = true;
+      allowed-users = [ "@wheel" ];
+    };
   };
 }

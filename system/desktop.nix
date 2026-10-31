@@ -26,9 +26,20 @@
     };
   };
 
+  services.flatpak = {
+    enable = true;
+  };
+
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
+
   programs.niri.enable = true;
 
   environment.systemPackages = with pkgs; [
     xwayland-satellite
+    kitty
   ];
+
 }
