@@ -1,8 +1,4 @@
-{ inputs, ... }: {
-  imports = [
-    inputs.disko.nixosModules.disko
-  ];
-
+{ ... }: {
   disko.devices = {
     disk = {
       nvme0n1 = {
@@ -12,17 +8,16 @@
           type = "gpt";
           partitions = {
             ESP = {
+              priority = 1;
               label = "boot";
               name = "ESP";
-              size = "512M";
+              size = "1G";
               type = "EF00";
               content = {
                 type = "filesystem";
                 format = "vfat";
-                mountpoint = "/boot";
-                mountOptions = [
-                  "defaults"
-                ];
+                mountpoint = "/efi";
+                mountOptions = [ "umask=0077" ];
               };
             };
             luks = {
@@ -107,6 +102,5 @@
     };
   };
 
-  fileSystems."/persist".neededForBoot = true;
-  fileSystems."/var/log".neededForBoot = true;
+  boot.loader.efi.efiSysMountPoint = "/efi";
 }
