@@ -7,7 +7,7 @@
 
   system.stateVersion = "26.11";
 
-  boot.loader.limine.enable = true;
+  boot.loader.grub.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "Stella";
